@@ -23,13 +23,10 @@ function readLine() {
 function main() {
     h = readLine().split(' ');
     h = h.map(Number);
-    var word = readLine();
-    var maxLetterHeight = 0;
-    for(var i=0; i<word.length; i++){
-        var letterIndex = word.charCodeAt(i)-'a'.charCodeAt(0);
-        if(h[letterIndex] > maxLetterHeight){
-            maxLetterHeight = h[letterIndex];
-        }
-    }
+    var word = readLine().split('');
+    var maxLetterHeight = word.reduce(function(maxHeight, letter){
+        var letterIndex = letter.charCodeAt(0) - 'a'.charCodeAt(0);
+        return (h[letterIndex] > maxHeight)? h[letterIndex] : maxHeight;
+    }, 0);    
     console.log(maxLetterHeight * word.length);
 }
