@@ -38,22 +38,17 @@ function main() {
     apple = apple.map(Number);
     orange = readLine().split(' ');
     orange = orange.map(Number);
-    var appleCount = 0;
     var orangeCount = 0;
     //Count apples
-    for(var i=0; i<m; i++){
-        var absoluteApplePosition = a + apple[i];
-        if(insideHouse(absoluteApplePosition)){
-            appleCount++;
-        }
-    }
+    var appleCount = apple.reduce(function(total, x){
+        var absoluteApplePosition = x + a;
+        return (insideHouse(absoluteApplePosition))? total + 1 : total;
+    }, 0);
     //Count oranges
-    for(var i=0; i<n; i++){
-        var absoluteOrangePosition = b + orange[i];
-        if(insideHouse(absoluteOrangePosition)){
-            orangeCount++;
-        }
-    }
+    var orangeCount = orange.reduce(function(total, x){
+        var absoluteOrangePosition = x + b;
+        return (insideHouse(absoluteOrangePosition))? total + 1 : total;
+    }, 0);
     console.log(appleCount);
     console.log(orangeCount);
 }
